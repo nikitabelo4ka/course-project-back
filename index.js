@@ -19,7 +19,7 @@ const imagekit = new ImageKit ({
 
 const io = require("socket.io")(http, {
     cors: {
-      origin: "http://localhost:3000",
+      origin: process.env.FRONTEND_URL,
     },
 });
 
