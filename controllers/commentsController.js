@@ -20,6 +20,14 @@ class commentsController {
             next(apiError.badrequest(error.message));
         }
     }
+
+    async deleteComment(reqParams) {
+           
+        let {id} = reqParams;
+        const comment = await Comment.destroy({where: {id}}); 
+        return id;
+
+    }
 }
 
 module.exports = new commentsController();

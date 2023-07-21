@@ -1,4 +1,4 @@
-const {Item, ItemTag, Tag} = require("../models/models");
+const {Item, ItemTag, Tag, Collection, User} = require("../models/models");
 const apiError = require("../error/apiError");
 
 class collectionItemController {
@@ -107,6 +107,15 @@ class collectionItemController {
         } catch (error) {
             next(apiError.badrequest(error.message));
         }
+    }
+
+    async getLatestItems(request, response) {
+
+        let {limit} = request.query;
+        limit = limit || 3;
+        const items = await Item.findAll({ include: { model: Collection, include: User }, order: [['id', 'DESC']], limit });
+        return response.json(items);
+
     }
 }
 
