@@ -7,7 +7,7 @@ const User = sequelize.define("user", {
     email: {type: DataTypes.STRING, unique: true},
     password: {type: DataTypes.STRING},
     status: {type: DataTypes.STRING, defaultValue: "ACTIVE"},
-    role: {type: DataTypes.STRING, defaultValue: "ADMIN"}
+    role: {type: DataTypes.STRING, defaultValue: "USER"}
 })
 
 const Collection = sequelize.define('collection', {
