@@ -47,6 +47,12 @@ app.post("/api/comments/create", async (req, res, next) => {
     res.json(comment);
 });
 
+app.delete("/api/comments/itemComments/delete/:id", async (req, res) => {
+    const id = await commentsController.deleteComment(req.params);
+    io.emit("delete-comment", { id });
+    res.json(id);
+});
+
 app.get('/api/comments/itemComments', commentsController.getItemsComments);
 
 app.use(errorHandler);
