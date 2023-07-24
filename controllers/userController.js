@@ -62,7 +62,7 @@ class userController {
     async getALL(request, response, next) {
 
         try {
-            const users = await User.findAll();
+            const users = await User.findAll({ order: ['id'] });
             return response.json(users);
         } catch (error) {
             next(apiError.badrequest(error.message));
